@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "leetcode-local-tester"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["shen <goodstudyQAQ@163.com>"]
 license = "MIT License"

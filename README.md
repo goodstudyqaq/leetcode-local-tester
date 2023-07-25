@@ -136,6 +136,8 @@ Maintaining the project is hard and time-consuming, and I've put much ❤️ and
 
 If you've appreciated my work, you can back me up with a donation! Thank you 😊
 
+If there is any problem, please create an issue. I will reply to you as soon as possible.
+
 
 [<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" width="217px" height="51x">](https://www.buymeacoffee.com/goodstudyqaq)
 

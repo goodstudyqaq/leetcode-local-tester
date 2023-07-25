@@ -15,8 +15,6 @@ Because of Leetcode's special design for test cases, if you want to test your co
 The design is really like TopCoder's test cases, but TopCoder has a very good tool ([TZTester](https://community.topcoder.com/contest/classes/TZTester/TZTester.html)) to generate the boilerplate code for you, which is very convenient.
 
 # Usage
-## Environment
-- Python 3.7 
 
 ## Install
 ```bash

@@ -49,7 +49,7 @@ leetcode-local-tester work --kind contest --detail https://leetcode.com/contest/
 After running the command, you will get the following files:
 
 
-![dir](./statics/dir.jpg)
+![dir.jpg](https://s2.loli.net/2023/07/25/APhmjgsIa9G3BSw.jpg)
 
 `weekly-contest-326`: The folder of the contest. It contains all test cases and the code file.
 

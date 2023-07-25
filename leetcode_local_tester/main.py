@@ -1,5 +1,5 @@
 import click
-from leetcode_helper.api import generate_file_api, generate_utils_api
+from leetcode_local_tester.api import generate_file_api, generate_utils_api
 import os
 from alive_progress import alive_bar
 import time
@@ -47,7 +47,7 @@ def work(kind, detail, language, location):
             with zipfile.ZipFile(tmp_zip, 'r') as zip_ref:
                 zip_ref.extractall(location)
 
-        os.remove(tmp_zip)
+            os.remove(tmp_zip)
 
         nonlocal done
         done = True

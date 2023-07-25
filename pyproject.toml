@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "leetcode-helper"
+name = "leetcode-local-tester"
 version = "0.1.0"
 description = ""
 authors = ["shen <goodstudyQAQ@163.com>"]
 license = "MIT License"
 readme = "README.md"
-packages = [{include = "leetcode_helper"}]
+packages = [{include = "leetcode_local_tester"}]
 
 [tool.poetry.dependencies]
 python = "^3.7"

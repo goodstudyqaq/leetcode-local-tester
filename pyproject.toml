@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "leetcode-helper"
+version = "0.1.0"
+description = ""
+authors = ["shen <goodstudyQAQ@163.com>"]
+license = "MIT License"
+readme = "README.md"
+packages = [{include = "leetcode_helper"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "8.1.4"
+requests = "^2.31.0"
+alive-progress = "^3.1.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

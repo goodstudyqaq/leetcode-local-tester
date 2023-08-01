@@ -14,8 +14,8 @@ import time
                    "`https://leetcode.com/contest/weekly-contest-326/`, "
                    "`https://leetcode.con/problems/minimum-number-of-operations-to-reinitialize-a-permutation/`. "
                    "If type is `season`, the detail is the season name. Such as `2020-fall-solo` or `2020-fall-team`.")
-@click.option("--language", default="cpp",
-              help="The language of the code. Now support: `cpp`. Default is `cpp`.")
+@click.option("--language", default="python3",
+              help="The language of the code. Now support: `cpp`, `python3`. Default is `python3`.")
 @click.option("--location", default="./leetcode/",
               help="The location of the code. Default is `./leetcode/`.")
 def work(kind, detail, language, location):
@@ -63,6 +63,7 @@ def work(kind, detail, language, location):
                 continue
             time.sleep(0.01)
             bar()
+    t.join()
     print(f"Generate local file for {detail} done!")
 
 

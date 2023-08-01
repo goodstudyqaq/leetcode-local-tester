@@ -36,8 +36,8 @@ Options:
                    operations-to-reinitialize-a-permutation/`. If type is
                    `season`, the detail is the season name. Such as
                    `2020-fall-solo` or `2020-fall-team`.
-  --language TEXT  The language of the code. Now support: `cpp`. Default is
-                   `cpp`.
+  --language TEXT  The language of the code. Now support: `cpp`, `python3`. Default is
+                   `python3`.
   --location TEXT  The location of the code. Default is `./leetcode/`.
   --help           Show this message and exit.
 ```
@@ -127,7 +127,7 @@ In this example, the test case is:
 ```
 
 # TODO
-- [ ] Support `python`
+- [x] Support `python` (completed)
 
 # License
 This software is licensed under the MIT License. See the LICENSE file in the top distribution directory for the full license text.

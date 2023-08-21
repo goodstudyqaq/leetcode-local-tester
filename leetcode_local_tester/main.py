@@ -1,8 +1,41 @@
 import click
-from leetcode_local_tester.api import generate_file_api, generate_utils_api
 import os
-from alive_progress import alive_bar
-import time
+from leetcode_local_tester.model.config import Config
+from leetcode_local_tester.helper.handler import Handler
+
+
+def generate_file(kind, detail, language, location):
+    user_name = os.getenv("LEETCODE_USERNAME")
+    password = os.getenv("LEETCODE_PASSWORD")
+    cookie = os.getenv("LEETCODE_COOKIE")
+
+    if user_name is "" and password is "" and cookie is "":
+        raise Exception("Please set LEETCODE_USERNAME and LEETCODE_PASSWORD or LEETCODE_COOKIE in environment "
+                        "variables.")
+
+    current_file_location = os.path.dirname(os.path.abspath(__file__))
+    host = "leetcode.com" if "leetcode.com" in detail else "leetcode.cn"
+
+    config = Config(
+        username=user_name,
+        password=password,
+        cookie=cookie,
+        language=language,
+        kind=kind,
+        location=location,
+        template_location=f"{current_file_location}/template/{language}",
+        host=host,
+    )
+
+    handler = Handler(config)
+    handler.work(detail)
+
+
+def generate_utils(location):
+    # copy ./template/utils to location
+    import shutil
+    current_file_location = os.path.dirname(os.path.abspath(__file__))
+    shutil.copytree(f"{current_file_location}/template/utils", f"{location}/utils")
 
 
 @click.command()
@@ -12,59 +45,16 @@ import time
 @click.option("--detail",
               help="The detail of the question. If type is `contest` or `problem`, the detail is the url. Such as "
                    "`https://leetcode.com/contest/weekly-contest-326/`, "
-                   "`https://leetcode.con/problems/minimum-number-of-operations-to-reinitialize-a-permutation/`. "
+                   "`https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/`. "
                    "If type is `season`, the detail is the season name. Such as `2020-fall-solo` or `2020-fall-team`.")
 @click.option("--language", default="python3",
               help="The language of the code. Now support: `cpp`, `python3`. Default is `python3`.")
 @click.option("--location", default="./leetcode/",
               help="The location of the code. Default is `./leetcode/`.")
 def work(kind, detail, language, location):
-    done = False
-
-    def load():
-        if not os.path.exists(location):
-            os.mkdir(location)
-
-        tmp_zip = "./tmp.zip"
-        content = generate_file_api(kind, detail, language)
-        if os.path.exists(tmp_zip):
-            os.remove(tmp_zip)
-        with open(tmp_zip, "wb") as f:
-            f.write(content)
-
-        # unzip the file
-        import zipfile
-        with zipfile.ZipFile(tmp_zip, 'r') as zip_ref:
-            zip_ref.extractall(location)
-
-        # remove the tmp file
-        os.remove(tmp_zip)
-
-        if not os.path.exists(f"{location}/utils"):
-            content = generate_utils_api()
-            with open(tmp_zip, "wb") as f:
-                f.write(content)
-            with zipfile.ZipFile(tmp_zip, 'r') as zip_ref:
-                zip_ref.extractall(location)
-
-            os.remove(tmp_zip)
-
-        nonlocal done
-        done = True
-
-    import threading
-    t = threading.Thread(target=load)
-    t.start()
-    with alive_bar(1000, title="loading...") as bar:
-        for i in range(1000):
-            if done:
-                time.sleep(0.001)
-                bar()
-                continue
-            time.sleep(0.01)
-            bar()
-    t.join()
-    print(f"Generate local file for {detail} done!")
+    generate_file(kind, detail, language, location)
+    if not os.path.exists(f"{location}/utils"):
+        generate_utils(location)
 
 
 @click.group()
@@ -73,7 +63,6 @@ def cli():
 
 
 cli.add_command(work)
-from alive_progress.styles import showtime, Show
 
 if __name__ == "__main__":
     cli()

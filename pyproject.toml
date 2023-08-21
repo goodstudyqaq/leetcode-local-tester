@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "leetcode-local-tester"
-version = "0.3.0"
+version = "0.4.0"
 description = ""
 authors = ["shen <goodstudyQAQ@163.com>"]
 license = "MIT License"
@@ -12,6 +12,10 @@ python = "^3.7"
 click = "8.1.4"
 requests = "^2.31.0"
 alive-progress = "^3.1.4"
+dacite = "1.8.0"
+beautifulsoup4 = "4.9.1"
+clang-format = "^16.0.6"
+html5lib = "1.1"
 
 [tool.poetry.scripts]
 leetcode-local-tester = "leetcode_local_tester.main:cli"

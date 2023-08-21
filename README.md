@@ -26,21 +26,27 @@ pip install leetcode-local-tester
 leetcode-local-tester work --help
 
 Options:
-  --kind TEXT      The question kind. Now support: `contest`, `problem`,
-                   `season`, and `contest` includes `weekly` and `biweekly`.
-                   Default is `problem`.
-  --detail TEXT    The detail of the question. If type is `contest` or
-                   `problem`, the detail is the url. Such as
-                   `https://leetcode.com/contest/weekly-contest-326/`,
-                   `https://leetcode.con/problems/minimum-number-of-
-                   operations-to-reinitialize-a-permutation/`. If type is
-                   `season`, the detail is the season name. Such as
-                   `2020-fall-solo` or `2020-fall-team`.
-  --language TEXT  The language of the code. Now support: `cpp`, `python3`. Default is
-                   `python3`.
-  --location TEXT  The location of the code. Default is `./leetcode/`.
-  --help           Show this message and exit.
+  --kind TEXT          The question kind. Now support: `contest`, `problem`,
+                       `season`, and `contest` includes `weekly` and
+                       `biweekly`. Default is `problem`.
+  --detail TEXT        The detail of the question. If type is `contest` or
+                       `problem`, the detail is the url. Such as
+                       `https://leetcode.com/contest/weekly-contest-326/`,
+                       `https://leetcode.cn/problems/minimum-number-of-
+                       operations-to-reinitialize-a-permutation/`. If type is
+                       `season`, the detail is the season name. Such as
+                       `2020-fall-solo` or `2020-fall-team`.
+  --language TEXT      The language of the code. Now support: `cpp`,
+                       `python3`. Default is `python3`.
+  --location TEXT      The location of the code. Default is `./leetcode/`.
+  --help               Show this message and exit.
 ```
+## Before you use
+Because the utility needs to login to Leetcode to get some information, there are two ways to login. One is to use username and password. You need to set these value to environment variables: `LEETCODE_USERNAME` and `LEETCODE_PASSWORD`. The other is to use cookie. You need to set the cookie to environment variable: `LEETCODE_COOKIE`. You can read the article [How to get the cookie](https://betterprogramming.pub/work-on-leetcode-problems-in-vs-code-5fedf1a06ca1) to get the cookie.
+- Note: If you use `leetcode.com`. You cannot use username and password to login, because `leetcode.com` has recaptcha. So you need to use cookie to login.
+
+
+
 
 ## Example
 ```bash

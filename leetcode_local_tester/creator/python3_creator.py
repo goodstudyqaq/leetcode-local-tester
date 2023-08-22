@@ -74,6 +74,20 @@ class PythonCreator(CodeCreator):
             tmp = input_param.split(": ")
             input_type = tmp[1]
             # remove Optional
+            while "Optional[" in input_type:
+                beg_idx = input_type.find("Optional[")
+                score = 0
+                end_idx = -1
+                for i in range(beg_idx, len(input_type)):
+                    if input_type[i] == "[":
+                        score += 1
+                    elif input_type[i] == "]":
+                        score -= 1
+                        if score == 0:
+                            end_idx = i
+                            break
+                input_type = input_type[:beg_idx] + input_type[beg_idx + 9:end_idx] + input_type[end_idx + 1:]
+
             if input_type.startswith("Optional["):
                 input_type = input_type[9:-1]
             input_name = tmp[0]
@@ -82,8 +96,21 @@ class PythonCreator(CodeCreator):
                 f"{input_name}: {input_type} = convert_params(data[i * one_test_number + {idx}], '{input_type}')")
             input_names.append(input_name)
 
-        if f.output_params.startswith("Optional["):
-            f.output_params = f.output_params[9:-1]
+        while "Optional[" in f.output_params:
+            beg_idx = f.output_params.find("Optional[")
+            score = 0
+            end_idx = -1
+            for i in range(beg_idx, len(f.output_params)):
+                if f.output_params[i] == "[":
+                    score += 1
+                elif f.output_params[i] == "]":
+                    score -= 1
+                    if score == 0:
+                        end_idx = i
+                        break
+            f.output_params = f.output_params[:beg_idx] + f.output_params[beg_idx + 9:end_idx] + f.output_params[
+                                                                                                 end_idx + 1:]
+
         build_params_str_list.append(
             f"real_res: {f.output_params} = convert_params(data[i * one_test_number + {input_number}], '{f.output_params}')")
         build_params_str_list = [self._generate_code_with_indent(s, 2) for s in build_params_str_list]

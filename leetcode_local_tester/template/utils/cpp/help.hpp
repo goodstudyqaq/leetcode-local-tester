@@ -216,8 +216,14 @@ bool compare_result(string sample_idx, TreeNode *my_ans, TreeNode *result) {
 };
 
 bool compare_result(string sample_idx, ListNode *my_ans, ListNode *result) {
-    vector<long long> a = my_ans->to_vector();
-    vector<long long> b = result->to_vector();
+    vector<long long> a, b;
+    // https://leetcode.cn/problems/merge-k-sorted-lists/
+    if (my_ans != NULL) {
+        a = my_ans->to_vector();
+    }
+    if (result != NULL) {
+        b = result->to_vector();
+    }
     return compare_result(sample_idx, a, b);
 }
 
@@ -327,7 +333,12 @@ void convert_params(string str, vector<T> &v) {
 void convert_params(string str, ListNode *&res) {
     vector<long long> v;
     convert_params(str, v);
-    res = new ListNode(v);
+    // https://leetcode.cn/problems/merge-k-sorted-lists/
+    if (v.size() == 0) {
+        res = NULL;
+    } else {
+        res = new ListNode(v);
+    }
 }
 
 vector<string> __split(string &s, string delimiter) {

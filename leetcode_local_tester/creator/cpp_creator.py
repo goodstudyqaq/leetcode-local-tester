@@ -80,7 +80,9 @@ class CppCreator(CodeCreator):
         for idx, input_param in enumerate(f.input_params):
             if input_param == "":
                 continue
-            tmp = input_param.split(" ")
+            # tmp maybe long long value
+            tmp = input_param.rsplit(" ", 1)
+
             input_type = tmp[0]
             input_name = tmp[1]
 
@@ -128,7 +130,7 @@ class CppCreator(CodeCreator):
             for idx, input_param in enumerate(input_params):
                 if input_param == '':
                     continue
-                tmp = input_param.split(" ")
+                tmp = input_param.rsplit(" ", 1)
                 input_type = tmp[0]
                 input_name = tmp[1]
 

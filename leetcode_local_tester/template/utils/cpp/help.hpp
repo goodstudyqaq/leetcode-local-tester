@@ -44,6 +44,10 @@ string to_string(bool b) {
     return (b ? "true" : "false");
 }
 
+string to_string(char c) {
+    return string(1, c);
+}
+
 string to_string(vector<bool> v) {
     bool first = true;
     string res = "{";
@@ -359,6 +363,10 @@ vector<string> __split(string &s, string delimiter) {
 void convert_params(string str, TreeNode *&res) {
     vector<string> v;
     str = str.substr(1, str.size() - 2);
+    if (str == "") {
+        res = NULL;
+        return;
+    }
     v = __split(str, ",");
     res = new TreeNode(v);
 }
